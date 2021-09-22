@@ -2,10 +2,15 @@
 
 // PART 1: SHOW A FORTUNE
 
-function showFortune(evt) {
+function showFortune(response) {
   // TODO: get the fortune and show it in the #fortune-text div
+  $.get('/fortune', response => {
+    $('#fortune-text').text(response);
+});
 }
-
+//$.get('/status', {order: 123}, res => {
+  //$('#order-status').html(res);
+  
 $('#get-fortune-button').on('click', showFortune);
 
 // PART 2: SHOW WEATHER
