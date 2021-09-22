@@ -55,9 +55,11 @@ def weather():
 def order_melons():
     """Order melons and return a dictionary of result-code and result-msg."""
 
-    melon = request.form.get('melon_type')
+    melon = request.form.get('melon')
     qty = int(request.form.get('qty'))
-
+    print("**************************")
+    print(request.form)
+    print("**************************")
     if qty > 10:
         result_code = 'ERROR'
         result_text = "You can't buy more than 10 melons"
@@ -67,7 +69,10 @@ def order_melons():
     else:
         result_code = 'ERROR'
         result_text = "You want to buy fewer than 1 melons? Huh?"
-
+    print("**************************")
+    print(result_text)
+    print(melon)
+    print("**************************")
     return jsonify({'code': result_code, 'msg': result_text})
 
 
