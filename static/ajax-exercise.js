@@ -34,29 +34,27 @@ $('#weather-form').on('submit', showWeather);
 function orderMelons(evt) {
   evt.preventDefault();
 
-  //$('#order-form').on('submit', evt => {
-    //evt.preventDefault();
+  //if (evt.code === 'ERROR'){
+    //  $("alert").addClass("order-error");
+    //};
   
+
     const formInputs = {
       qty: $('#qty-field').val(),
       melon: $('#melon-type-field').val(),
     };
   
     $.post('/order-melons.json', formInputs, res => {
+      if (`${res.code}` === 'ERROR'){
+        $('#order-status').addClass("order-error");
+        $('#order-error').text(res);
+      };
+      
       alert(`Your code is: ${res.code}`);
       alert(`Your message is: ${res.msg}`);
+      
     });
   };
-
-
-
-  // $.post('/order-melons.json',(FORMDATA)res => {
-  //   alert(`Your code is: ${res.code}`);
-  //   alert(`Your message is: ${res.msg}`);
-  // })
-
-  // TODO: show the result message after your form
-  // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
 
 
 $('#order-form').on('submit', orderMelons);
